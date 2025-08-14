@@ -39,12 +39,15 @@ const NavbarView = () => {
                 alt="logo"
                 className="h-10 w-10 md:h-14 md:w-14 ml-4"
               />
-              <div className="flex flex-col items-center ml-2 md:ml-4">
+              <div className="flex flex-col items-left ml-2 md:ml-4">
                 <span className="text-white font-bold text-lg md:text-2xl tracking-[0.3rem]">
                   PERKINDO
                 </span>
                 <p className="text-white text-[0.6rem] md:text-[0.7rem] text-center">
                   Persatuan Konsultan Indonesia
+                </p>
+                <p className="text-white text-[0.6rem] md:text-[0.7rem]">
+                  Provinsi Kalimantan Barat
                 </p>
               </div>
             </a>
@@ -58,7 +61,7 @@ const NavbarView = () => {
             <a href="/profile" className={getLinkClassName("/profile")}>
               Profil
             </a>
-            <a href="/galeri" className={getLinkClassName("/galeri")}>
+            <a href="/gallery" className={getLinkClassName("/gallery")}>
               Galeri
             </a>
 
@@ -200,7 +203,7 @@ const NavbarView = () => {
               Profil
             </a>
             <a
-              href="/galeri"
+              href="/gallery"
               className="text-white block hover:bg-white hover:text-black rounded-lg px-3 py-2"
             >
               Galeri

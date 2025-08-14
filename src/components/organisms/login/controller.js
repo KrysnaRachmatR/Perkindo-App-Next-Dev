@@ -39,7 +39,7 @@ export const useSignAuthController = () => {
     const role = localStorage.getItem("role");
     if (token) {
       if (role === "admin") router.push("/admin");
-      else router.push("/users");
+      else router.push("/user");
     }
   }, [router]);
 

@@ -2,11 +2,9 @@
 
 import { useState, useEffect } from "react";
 import NavbarView from "@/components/organisms/navbar/navbar";
-// import ContentSectionView from "@/components/molecules/contentSection/contentSection";
 import Footer from "@/components/organisms/footer/footer";
-// import Card from "@/components/molecules/card";
-// import ContentSectionView from "@/components/molecules/contentSection/contentSection";
 import ContentSectionController from "@/components/molecules/contentSection/contentController";
+import CardController from "@/components/molecules/card/cardController";
 
 const backgroundImages = [
   "/images/konstruksi.jpg",
@@ -142,9 +140,9 @@ export default function Home() {
       </div>
 
       {/* Menu Galeri */}
-      {/* <div className="flex flex-wrap justify-center gap-8 p-8">
-        <Card cards={dataGaleri} />
-      </div> */}
+      <div className="flex flex-wrap justify-center gap-8 p-8">
+        <CardController cards={dataGaleri} />
+      </div>
 
       <div>
         <ContentSectionController />

@@ -21,7 +21,7 @@ export const handleLogin = async ({
       const role = res.data.user.username ? "admin" : "user";
       localStorage.setItem("role", role);
       localStorage.setItem("user", JSON.stringify(res.data.user));
-      router.push(role === "admin" ? "/admin" : "/users");
+      router.push(role === "admin" ? "/admin" : "/user");
     } else {
       setErrorSignIn("Login gagal. Silakan coba lagi.");
     }
