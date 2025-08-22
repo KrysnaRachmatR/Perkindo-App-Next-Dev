@@ -621,7 +621,7 @@ return (
                 </div>
 
                 {/* FORM BUAT NOTULENSI */}
-                <div className="mt-6 border-t pt-4 p-6">
+                {/* <div className="mt-6 border-t pt-4 p-6">
                   <p className="font-medium text-blue-700 dark:text-blue-300 mb-2">Buat Notulensi</p>
                   <form onSubmit={(e) => submitNotulen(e, selectedRapat.id)} className="space-y-3">
                     <textarea
@@ -648,7 +648,7 @@ return (
                     </button>
                     {error && <p className="text-sm text-red-500">{error}</p>}
                   </form>
-                </div>
+                </div> */}
 
                 {/* ACTION BUTTONS */}
                 <div className="p-4 border-t border-gray-100 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 rounded-b-2xl flex justify-end gap-2 sticky bottom-0">
@@ -901,7 +901,13 @@ return (
                 <DatePicker
                   selected={null}
                   onChange={(date) => {
-                    const isoDate = date.toISOString().split("T")[0];
+                    if (!date) return;
+
+                    const localDate = new Date(date);
+                    const isoDate = `${localDate.getFullYear()}-${String(
+                      localDate.getMonth() + 1
+                    ).padStart(2, "0")}-${String(localDate.getDate()).padStart(2, "0")}`;
+
                     handleAddTanggal(isoDate);
                   }}
                   dateFormat="yyyy-MM-dd"
