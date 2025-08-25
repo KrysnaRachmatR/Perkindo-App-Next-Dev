@@ -13,7 +13,7 @@ export default function Contact() {
     {
       icon: "/images/phone.png", // Add phone icon
       title: "Telepon",
-      content: "+62 561 123456\n+62 812 3456 7890",
+      content: "+6282335424547",
       color: "from-green-400 to-emerald-500"
     },
     {
@@ -48,8 +48,8 @@ export default function Contact() {
     },
     {
       name: "WhatsApp",
-      icon: "/images/whatsapp.png", // Add WhatsApp icon
-      url: "https://wa.me/6281234567890",
+      icon: "/images/whatsapp.jpg", // Add WhatsApp icon
+      url: "https://wa.me/082335424547",
       color: "bg-gradient-to-br from-green-500 to-green-600",
       hoverColor: "hover:from-green-600 hover:to-green-700"
     }
@@ -244,11 +244,11 @@ export default function Contact() {
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 text-center">
             <div className="bg-white/10 rounded-2xl p-6">
               <h3 className="font-semibold mb-2">Senin - Jumat</h3>
-              <p className="text-slate-300">08:00 - 17:00 WIB</p>
+              <p className="text-slate-300">09:00 - 17:00 WIB</p>
             </div>
             <div className="bg-white/10 rounded-2xl p-6">
               <h3 className="font-semibold mb-2">Sabtu</h3>
-              <p className="text-slate-300">08:00 - 14:00 WIB</p>
+              <p className="text-slate-300">09:00 - 14:00 WIB</p>
             </div>
             <div className="bg-white/10 rounded-2xl p-6">
               <h3 className="font-semibold mb-2">Minggu</h3>

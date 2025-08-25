@@ -22,6 +22,7 @@ import {
   Newspaper,
   Headset,
   LogOutIcon,
+  X,
 } from "lucide-react";
 
 const menuGroups = [
@@ -41,7 +42,6 @@ const menuGroups = [
       {
         icon: <FileCheck className="w-5 h-5" />,
         label: "Validasi SBU",
-        route: "#",
         children: [
           {
             label: "Konstruksi",
@@ -56,7 +56,6 @@ const menuGroups = [
       {
         icon: <Layers className="w-5 h-5" />,
         label: "Klasifikasi",
-        route: "#",
         children: [
           {
             label: "Konstruksi",
@@ -124,15 +123,33 @@ const menuGroups = [
 
 const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
   const [pageName, setPageName] = useState("dashboard");
+  const pathname = usePathname();
 
   useEffect(() => {
-  const storedPage = localStorage.getItem("selectedMenu");
-  if (storedPage) setPageName(storedPage);
-}, []);
+    const storedPage = localStorage.getItem("selectedMenu");
+    if (storedPage) setPageName(storedPage);
+  }, []);
 
-useEffect(() => {
-  if (pageName) localStorage.setItem("selectedMenu", pageName);
-}, [pageName]);
+  useEffect(() => {
+    if (pageName) localStorage.setItem("selectedMenu", pageName);
+  }, [pageName]);
+
+  // Auto-expand dropdown if current page is inside it
+  useEffect(() => {
+    // Find which menu item contains the current pathname
+    menuGroups.forEach(group => {
+      group.menuItems.forEach(item => {
+        if (item.children) {
+          const hasActiveChild = item.children.some(child => child.route === pathname);
+          if (hasActiveChild) {
+            setPageName(item.label.toLowerCase());
+          }
+        } else if (item.route === pathname) {
+          setPageName(item.label.toLowerCase());
+        }
+      });
+    });
+  }, [pathname]);
 
   const onLogout = () => {
     localStorage.removeItem("token");
@@ -148,44 +165,67 @@ useEffect(() => {
   return (
     <AsideWrapper>
       <aside
-        className={`fixed top-0 left-0 z-50 h-full w-72 flex flex-col bg-gradient-to-b from-white via-gray-50 to-white dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 shadow-2xl transition-transform duration-300 ease-in-out lg:translate-x-0 ${
+        className={`fixed top-0 left-0 z-50 h-full w-80 flex flex-col bg-white dark:bg-slate-900 shadow-xl border-r border-slate-200/60 dark:border-slate-700/60 backdrop-blur-xl transition-all duration-300 ease-out lg:translate-x-0 ${
           sidebarOpen ? "translate-x-0" : "-translate-x-full"
         }`}
       >
-        {/* Logo & Close */}
-        <div className="flex items-center justify-between px-6 py-4 border-b border-gray-200 dark:border-gray-700">
-          <Link href="/" className="flex items-center gap-3">
-            <Image
-              width={40}
-              height={40}
-              src="/images/logo.png"
-              alt="Logo"
-              priority
-              className="object-contain"
-            />
-            <span className="text-xl font-bold text-gray-800 dark:text-white tracking-tight">
-              PERKINDO
-            </span>
-          </Link>
-          <button
-            onClick={() => setSidebarOpen(false)}
-            className="lg:hidden text-gray-500 dark:text-gray-300 hover:text-rose-500 transition"
-            aria-label="Close Sidebar"
-          >
-            <svg className="w-6 h-6" viewBox="0 0 20 20" fill="currentColor">
-              <path d="M14.348 5.652a1 1 0 00-1.414 0L10 8.586 7.066 5.652a1 1 0 00-1.414 1.414L8.586 10l-2.934 2.934a1 1 0 101.414 1.414L10 11.414l2.934 2.934a1 1 0 001.414-1.414L11.414 10l2.934-2.934a1 1 0 000-1.414z" />
-            </svg>
-          </button>
+        {/* Header dengan gradient accent */}
+        <div className="relative">
+          {/* Gradient Background */}
+          <div className="absolute inset-0 bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600"></div>
+          <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/10"></div>
+          
+          {/* Header Content */}
+          <div className="relative flex items-center justify-between px-6 py-5">
+            <Link href="/" className="flex items-center gap-3 group">
+              <div className="relative">
+                <div className="absolute inset-0 bg-white/20 rounded-xl blur-sm"></div>
+                <div className="relative bg-white/90 backdrop-blur-sm rounded-xl p-2 shadow-lg">
+                  <Image
+                    width={32}
+                    height={32}
+                    src="/images/logo.png"
+                    alt="Logo"
+                    priority
+                    className="object-contain"
+                  />
+                </div>
+              </div>
+              <div className="flex flex-col">
+                <span className="text-xl font-bold text-white tracking-tight group-hover:scale-105 transition-transform">
+                  SIMPERKINDO
+                </span>
+                <span className="text-xs text-blue-100/80 font-medium">
+                  Admin Dashboard
+                </span>
+              </div>
+            </Link>
+            
+            <button
+              onClick={() => setSidebarOpen(false)}
+              className="lg:hidden p-2 text-white/80 hover:text-white hover:bg-white/10 rounded-lg transition-all duration-200"
+              aria-label="Close Sidebar"
+            >
+              <X className="w-5 h-5" />
+            </button>
+          </div>
         </div>
 
-        {/* Menu Items */}
-        <div className="flex-1 overflow-y-auto px-5 py-6 no-scrollbar">
-          <nav className="flex flex-col gap-8">
+        {/* Menu Items dengan improved styling */}
+        <div className="flex-1 overflow-y-auto px-4 py-6 space-y-6 scrollbar-thin scrollbar-thumb-slate-300 dark:scrollbar-thumb-slate-600 scrollbar-track-transparent">
+          <nav className="space-y-8">
             {menuGroups.map((group, index) => (
-              <div key={index}>
-                <h4 className="mb-2 ml-2 text-xs font-bold uppercase text-gray-400 dark:text-gray-500 tracking-wider">
-                  {group.name}
-                </h4>
+              <div key={index} className="space-y-3">
+                {/* Group Header dengan improved styling */}
+                <div className="flex items-center gap-3 px-3">
+                  <div className="h-px bg-gradient-to-r from-slate-300 to-transparent dark:from-slate-600 flex-1"></div>
+                  <h4 className="text-xs font-bold uppercase text-slate-500 dark:text-slate-400 tracking-wider">
+                    {group.name}
+                  </h4>
+                  <div className="h-px bg-gradient-to-l from-slate-300 to-transparent dark:from-slate-600 flex-1"></div>
+                </div>
+                
+                {/* Menu Items */}
                 <ul className="space-y-1">
                   {group.menuItems.map((item, idx) => (
                     <SidebarItem
@@ -193,27 +233,29 @@ useEffect(() => {
                       item={item}
                       pageName={pageName}
                       setPageName={setPageName}
+                      currentPath={pathname}
                     />
                   ))}
                 </ul>
-                {index < menuGroups.length - 1 && (
-                  <hr className="mt-5 border-t border-gray-200 dark:border-gray-700" />
-                )}
               </div>
             ))}
           </nav>
         </div>
 
-        {/* Logout Button */}
-        <div className="p-4 border-t border-gray-200 dark:border-gray-700">
+        {/* Enhanced Logout Section */}
+        <div className="p-4 border-t border-slate-200/60 dark:border-slate-700/60 bg-slate-50/50 dark:bg-slate-800/50">
           <button
             onClick={onLogout}
-            className="flex w-full items-center justify-center gap-2 rounded-lg bg-white dark:bg-gray-800 border px-4 py-2 text-sm font-semibold text-rose-600 hover:bg-rose-100 dark:hover:bg-rose-700 hover:shadow-md transition"
+            className="group flex w-full items-center justify-center gap-3 rounded-xl bg-gradient-to-r from-red-500 to-rose-600 px-4 py-3 text-sm font-semibold text-white shadow-lg hover:shadow-xl hover:from-red-600 hover:to-rose-700 transform hover:scale-[1.02] active:scale-[0.98] transition-all duration-200"
           >
-            <LogOutIcon className="w-5 h-5" />
-            Logout
+            <LogOutIcon className="w-4 h-4 group-hover:rotate-12 transition-transform duration-200" />
+            <span>Logout</span>
           </button>
         </div>
+
+        {/* Decorative Elements */}
+        <div className="absolute top-20 right-0 w-32 h-32 bg-gradient-to-br from-blue-400/5 to-purple-400/5 rounded-full blur-2xl"></div>
+        <div className="absolute bottom-20 left-0 w-24 h-24 bg-gradient-to-tr from-indigo-400/5 to-cyan-400/5 rounded-full blur-xl"></div>
       </aside>
     </AsideWrapper>
   );

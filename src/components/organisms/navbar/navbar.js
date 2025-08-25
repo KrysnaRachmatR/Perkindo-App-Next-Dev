@@ -114,6 +114,9 @@ const NavbarView = () => {
             <NavLink href="/gallery" pathname={pathname} scroll={scroll}>
               Galeri
             </NavLink>
+            <NavLink href="/blu" pathname={pathname} scroll={scroll}>
+              BLU
+            </NavLink>
 
             {/* Enhanced Dropdown */}
             <div
@@ -166,7 +169,7 @@ const NavbarView = () => {
             <NavLink href="/layanan" pathname={pathname} scroll={scroll}>
               Layanan
             </NavLink>
-            <NavLink href="/members" pathname={pathname} scroll={scroll}>
+            <NavLink href="/member" pathname={pathname} scroll={scroll}>
               Anggota
             </NavLink>
             <NavLink href="/contact" pathname={pathname} scroll={scroll}>
@@ -230,11 +233,14 @@ const NavbarView = () => {
               <MobileNavLink href="/layanan">
                 Layanan
               </MobileNavLink>
-              <MobileNavLink href="/members">
+              <MobileNavLink href="/member">
                 Anggota
               </MobileNavLink>
               <MobileNavLink href="/contact">
                 Kontak
+              </MobileNavLink>
+              <MobileNavLink href="/blu">
+                BLU
               </MobileNavLink>
               
               <div className="pt-3">

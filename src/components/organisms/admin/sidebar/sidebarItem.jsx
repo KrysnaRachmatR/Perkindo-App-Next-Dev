@@ -1,12 +1,16 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { ChevronDown } from "lucide-react";
+import { ChevronDown, ChevronRight } from "lucide-react";
 
-const SidebarItem = ({ item, pageName, setPageName }) => {
+const SidebarItem = ({ item, pageName, setPageName, currentPath }) => {
   const pathname = usePathname();
+  const [isExpanded, setIsExpanded] = useState(false);
 
   const handleClick = () => {
+    if (item.children) {
+      setIsExpanded(!isExpanded);
+    }
     const updatedPageName =
       pageName !== item.label.toLowerCase() ? item.label.toLowerCase() : "";
     setPageName(updatedPageName);
@@ -15,58 +19,105 @@ const SidebarItem = ({ item, pageName, setPageName }) => {
   const isActive = (item) => {
     if (item.route === pathname) return true;
     if (item.children) {
-      return item.children.some((child) => isActive(child));
+      return item.children.some((child) => pathname === child.route);
     }
     return false;
   };
 
   const isItemActive = isActive(item);
 
+  // Auto-expand if any child is active
+  useEffect(() => {
+    if (item.children && item.children.some(child => pathname === child.route)) {
+      setIsExpanded(true);
+    }
+  }, [pathname, item.children]);
+
   return (
     <li>
-      {/* Jika ada children: tampilkan parent-nya sebagai teks non-clickable */}
+      {/* Jika ada children: tampilkan parent dengan dropdown */}
       {item.children ? (
-        <div className="px-4 py-2 font-medium text-gray-500">
-          <div className="flex items-center gap-2.5">
-            {item.icon}
-            {item.label}
-            <ChevronDown className="ml-auto w-4 h-4" />
+        <div className="space-y-1">
+          <button
+            onClick={handleClick}
+            className={`group relative flex items-center justify-between w-full rounded-xl px-4 py-3 font-medium transition-all duration-200 hover:shadow-sm ${
+              isItemActive
+                ? "bg-gradient-to-r from-blue-500/10 to-indigo-500/10 dark:from-blue-400/20 dark:to-indigo-400/20 text-blue-700 dark:text-blue-300 shadow-sm border-l-4 border-blue-500"
+                : "text-slate-700 dark:text-slate-300 hover:bg-slate-100/80 dark:hover:bg-slate-700/50 hover:text-slate-900 dark:hover:text-slate-100"
+            }`}
+          >
+            <div className="flex items-center gap-3">
+              <div className={`flex items-center justify-center w-8 h-8 rounded-lg transition-colors ${
+                isItemActive 
+                  ? "bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400" 
+                  : "bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-400 group-hover:bg-slate-200 dark:group-hover:bg-slate-600"
+              }`}>
+                {item.icon}
+              </div>
+              <span className="font-medium">{item.label}</span>
+            </div>
+            <div className={`transform transition-transform duration-200 ${
+              isExpanded ? "rotate-0" : "-rotate-90"
+            } ${isItemActive ? "text-blue-600 dark:text-blue-400" : "text-slate-400"}`}>
+              <ChevronDown className="w-4 h-4" />
+            </div>
+          </button>
+          
+          {/* Dropdown Menu */}
+          <div className={`overflow-hidden transition-all duration-300 ease-out ${
+            isExpanded ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
+          }`}>
+            <ul className="ml-6 space-y-1 border-l-2 border-slate-200 dark:border-slate-700 pl-4 py-2">
+              {item.children.map((child, idx) => {
+                const isChildActive = pathname === child.route;
+                return (
+                  <li key={idx}>
+                    <Link
+                      href={child.route}
+                      onClick={() => setPageName(child.label.toLowerCase())}
+                      className={`group relative flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-all duration-200 hover:shadow-sm ${
+                        isChildActive
+                          ? "bg-gradient-to-r from-indigo-500/10 to-purple-500/10 dark:from-indigo-400/20 dark:to-purple-400/20 text-indigo-700 dark:text-indigo-300 shadow-sm"
+                          : "text-slate-600 dark:text-slate-400 hover:bg-slate-100/80 dark:hover:bg-slate-700/50 hover:text-slate-900 dark:hover:text-slate-100"
+                      }`}
+                    >
+                      <div className={`w-2 h-2 rounded-full transition-colors ${
+                        isChildActive 
+                          ? "bg-indigo-500 dark:bg-indigo-400" 
+                          : "bg-slate-300 dark:bg-slate-600 group-hover:bg-slate-400 dark:group-hover:bg-slate-500"
+                      }`}></div>
+                      <span>{child.label}</span>
+                    </Link>
+                  </li>
+                );
+              })}
+            </ul>
           </div>
-          <ul className="mt-2 ml-6 space-y-1 border-l border-graydark pl-2">
-            {item.children.map((child, idx) => {
-              const isChildActive = pathname === child.route;
-              return (
-                <li key={idx}>
-                  <Link
-                    href={child.route}
-                    onClick={() => setPageName(child.label.toLowerCase())}
-                    className={`flex items-center gap-2.5 rounded px-3 py-1.5 text-sm transition-all ${
-                      isChildActive
-                        ? "bg-graydark dark:bg-meta-4 text-white"
-                        : "text-black dark:text-white hover:bg-graydark dark:hover:bg-meta-4 hover:text-white"
-                    }`}
-                  >
-                    {child.icon}
-                    {child.label}
-                  </Link>
-                </li>
-              );
-            })}
-          </ul>
         </div>
       ) : (
         // Jika tidak ada children: tampilkan sebagai menu biasa
         <Link
           href={item.route}
           onClick={handleClick}
-          className={`group relative flex items-center gap-2.5 rounded px-4 py-2 font-medium transition ${
+          className={`group relative flex items-center gap-3 rounded-xl px-4 py-3 font-medium transition-all duration-200 hover:shadow-sm ${
             isItemActive
-              ? "bg-graydark dark:bg-meta-4 text-white"
-              : "text-black dark:text-white hover:bg-graydark dark:hover:bg-meta-4 hover:text-white"
+              ? "bg-gradient-to-r from-blue-500/10 to-indigo-500/10 dark:from-blue-400/20 dark:to-indigo-400/20 text-blue-700 dark:text-blue-300 shadow-sm border-l-4 border-blue-500"
+              : "text-slate-700 dark:text-slate-300 hover:bg-slate-100/80 dark:hover:bg-slate-700/50 hover:text-slate-900 dark:hover:text-slate-100"
           }`}
         >
-          {item.icon}
-          {item.label}
+          <div className={`flex items-center justify-center w-8 h-8 rounded-lg transition-colors ${
+            isItemActive 
+              ? "bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400" 
+              : "bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-400 group-hover:bg-slate-200 dark:group-hover:bg-slate-600"
+          }`}>
+            {item.icon}
+          </div>
+          <span>{item.label}</span>
+          
+          {/* Active indicator */}
+          {isItemActive && (
+            <div className="absolute right-3 w-2 h-2 bg-blue-500 dark:bg-blue-400 rounded-full animate-pulse"></div>
+          )}
         </Link>
       )}
     </li>
