@@ -12,7 +12,6 @@ const nextConfig = {
   },
 
   eslint: {
-    // Abaikan error linting saat build (misalnya <a>, <img>, dll)
     ignoreDuringBuilds: true,
   },
 };
