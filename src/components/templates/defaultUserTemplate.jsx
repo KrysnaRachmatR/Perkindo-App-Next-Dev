@@ -1,8 +1,8 @@
 "use client";
 
 import React, {useState} from "react";
-import Sidebar from "../organisms/user/sidebar/sidebar";
-import Header from "../organisms/user/header/Header";
+import Sidebar from "../organisms/User/Sidebar/Sidebar";
+import Header from "../organisms/User/Header/Header";
 
 export default function DefaultLayout({ children }) {
   const [sidebarOpen, setSidebarOpen] = useState(false);

@@ -2,9 +2,9 @@
 
 import { useState, useEffect, useRef } from "react";
 // import { fetchCardData } from "./CardService";
-import { fetchCardData } from "./cardService";
+import { fetchCardData } from "./CardService";
 // import { handleNext, handlePrev } from "./CardHandler";
-import { handleNext, handlePrev } from "./cardHandler";
+import { handleNext, handlePrev } from "./CardHandler";
 import CardView from "./CardView";
 
 const CardController = () => {

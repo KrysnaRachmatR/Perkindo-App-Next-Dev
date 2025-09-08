@@ -2,10 +2,10 @@
 
 import React from "react";
 import dynamic from "next/dynamic";
-import { useDashboardHandler } from "./dashboardHandler";
-import CardDataStats from "./cardData";
-import LineChart from "./lineChart";
-import Toast from "@/components/atoms/toastAlert";
+import { useDashboardHandler } from "./DashboardHandler";;
+import CardDataStats from "./CardData";
+import LineChart from "./LineChart";
+import Toast from "@/components/atoms/ToastAlert";
 import { IdCardIcon, FileBox, FileCode2, TrendingUp, Activity, BarChart3 } from "lucide-react";
 
 const DashboardAdmin = () => {

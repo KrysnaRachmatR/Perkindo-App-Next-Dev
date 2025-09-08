@@ -8,9 +8,9 @@ import { fetchUserData,
   checkHadirRapat, 
   postPollingTanggal, 
   downloadNotulensiZip,
-   } from "./rapatService";
+   } from "./RapatService";
 
-  import { fetchUserRapatDone, fetchUndanganController, kirimAbsensiRapat, handleDownloadNotulensi} from "./rapatController";
+  import { fetchUserRapatDone, fetchUndanganController, kirimAbsensiRapat, handleDownloadNotulensi} from "./RapatController";
 
 export const useRapatHandler = () => {
   const [isProcessing, setIsProcessing] = useState(false);

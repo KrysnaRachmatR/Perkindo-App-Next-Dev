@@ -1,12 +1,12 @@
 "use client";
 
-import NavbarView from "@/components/organisms/navbar/navbar";
-import GaleriSectionOrganism from "@/components/organisms/gallery/gallerySectionOrganisms";
-import Footer from "@/components/organisms/footer/footer";
+import NavbarView from "@/components/organisms/Navbar/Navbar";
+import GaleriSectionOrganism from "@/components/organisms/Gallery/GallerySectionOrganisms";
+import Footer from "@/components/organisms/Footer/Footer";
 import { useGaleriHandler } from "./galleryHandler";
-import GalleryGrid from "@/components/organisms/gallery/GalleryGrid";
-import GalleryEmptyState from "@/components/organisms/gallery/GalleryEmptyState";
-import GalleryModal from "@/components/organisms/gallery/GalleryModal";
+import GalleryGrid from "@/components/organisms/Gallery/GalleryGrid";
+import GalleryEmptyState from "@/components/organisms/Gallery/GalleryEmptyState";
+import GalleryModal from "@/components/organisms/Gallery/GalleryModal";
 
 const MainTemplateGaleri = () => {
   const { media, isModalOpen, selectedMedia, openModal, closeModal } =

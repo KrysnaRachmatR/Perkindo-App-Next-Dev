@@ -1,4 +1,4 @@
-import SignUpLoginView from "@/components/organisms/login/signup";
+import SignUpLoginView from "@/components/organisms/Login/signup";
 
 const LoginPage = () => {
   return <SignUpLoginView />;

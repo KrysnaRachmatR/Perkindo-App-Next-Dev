@@ -3,14 +3,14 @@
 import React, { useEffect } from "react";
 import { Dialog } from "@headlessui/react";
 // import {Modal} from "@/components/atoms/modal";
-import { useRapatHandler } from "./rapatHandler";
+import { useRapatHandler } from "./RapatHandler";
 import { BASE_URL } from "@/utils/constant";
 
 // Date Picker & locale Indonesia
 import DatePicker, { registerLocale } from "react-datepicker";
 import { id } from "date-fns/locale";
 import "react-datepicker/dist/react-datepicker.css";
-import { useNotulenHandler } from "./notulenHandler";
+import { useNotulenHandler } from "./NotulenHandler";
 
 // Registrasi locale dilakukan sekali di useEffect agar tidak error re-register
 const Rapat = () => {

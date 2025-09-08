@@ -1,7 +1,7 @@
 "use client";
 
 import DefaultLayout from "@/components/templates/DefaultAdminTemplate";
-import DashboardAdmin from "@/components/organisms/admin/dashboard/page";
+import DashboardAdmin from "@/components/organisms/Admin/Dashboard/Dashboard";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 

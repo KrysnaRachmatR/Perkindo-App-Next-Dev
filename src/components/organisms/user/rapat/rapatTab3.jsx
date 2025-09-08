@@ -1,6 +1,6 @@
-import { useRapatHandler } from "./rapatHandler";
-import { getNotulen } from "./rapatService";
-import { kirimAbsensiRapat } from "./rapatController";
+import { useRapatHandler } from "./RapatHandler";
+import { getNotulen } from "./RapatService";
+import { kirimAbsensiRapat } from "./RapatController";
 // import { handleDownloadNotulensiZip } from "@/controllers/notulensiController";
 import { useState, useRef } from "react";
 import Swal from "sweetalert2";

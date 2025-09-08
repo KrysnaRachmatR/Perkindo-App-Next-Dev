@@ -6,7 +6,7 @@ import { getUsers,
         getRapatMenungguPolling, 
         postOptionTanggal,
         postNotulen,
-} from "./rapatService";   
+} from "./RapatService";   
 
 export const fetchRapat = async () => {
   try {

@@ -1,7 +1,7 @@
 // src/controllers/useSignAuthController.js
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { handleLogin, handleRegister } from "./handler";
+import { handleLogin, handleRegister } from "./LoginHandler";
 
 export const useSignAuthController = () => {
   const [signIn, toggle] = useState(true);

@@ -8,8 +8,8 @@ import {
   fetchUsers,
   fetchRapatMenungguPolling,
   createOptionTanggal as tambahPollingTanggalService,
-} from "./rapatController";
-import { postNotulen } from "./rapatService";
+} from "./RapatController";
+import { postNotulen } from "./RapatService";
 
 export const useRapatHandler = () => {
   const [form, setForm] = useState({

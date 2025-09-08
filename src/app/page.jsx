@@ -1,10 +1,10 @@
-import NavbarView from "@/components/organisms/navbar/navbar";
-import Footer from "@/components/organisms/footer/footer";
+import NavbarView from "@/components/organisms/Navbar/Navbar";
+import Footer from "@/components/organisms/Footer/Footer";
 import HeroSection from "@/components/organisms/HeroSection";
 // import ServicesSection from "@/components/organisms/ServicesSection";
 import ServicesSection from "@/components/organisms/ServiceSection";
 import GallerySection from "@/components/organisms/GallerySection";
-import ContentSectionController from "@/components/molecules/contentSection/contentController";
+import ContentSectionController from "@/components/molecules/ContentSection/ContentController";
 
 export default function Home() {
   return (

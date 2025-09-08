@@ -2,8 +2,8 @@
 
 import React, { useState } from 'react';
 import { Search, Building2, MapPin, User, Calendar, Filter, Eye, ChevronRight } from 'lucide-react';
-import NavbarView from '@/components/organisms/navbar/navbar';
-import Footer from '@/components/organisms/footer/footer';
+import NavbarView from '@/components/organisms/Navbar/Navbar';
+import Footer from '@/components/organisms/Footer/Footer';
 
 const MemberTable = () => {
   const [searchTerm, setSearchTerm] = useState('');

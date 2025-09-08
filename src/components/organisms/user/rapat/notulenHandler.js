@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import Swal from "sweetalert2";
-import { createNotulensi, getAllNotulensi } from "./rapatService";
-import { fetchAllNotulensi, fetchUpdateNotulensi  } from "./rapatController";
+import { createNotulensi, getAllNotulensi } from "./RapatService";
+import { fetchAllNotulensi, fetchUpdateNotulensi  } from "./RapatController";
 
 export const useNotulenHandler = (rapatId, onSuccess) => {
   const [isi, setIsi] = useState("");

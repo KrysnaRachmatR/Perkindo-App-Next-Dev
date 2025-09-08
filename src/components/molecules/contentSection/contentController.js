@@ -2,10 +2,9 @@
 "use client";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { fetchBerita } from "./contentService";
-import { sortBeritaByDate } from "./contentHandler";
-// import ContentSectionView from "./ContentSectionView";
-import ContentSectionView from "./contentSection";
+import { fetchBerita } from "./ContentService";
+import { sortBeritaByDate } from "./ContentHandler";
+import ContentSectionView from "./ContentSection";
 
 const ContentSectionController = () => {
   const [berita, setBerita] = useState([]);

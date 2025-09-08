@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react";
 // import Button from "../atoms/Button";
 import Button from "../atoms/Buttons";
-import { ArrowRightIcon } from "../atoms/icons/ArrowRightIcon";
+import { ArrowRightIcon } from "../atoms/Icons/ArrowRightIcon";
 
 const backgroundImages = ["/images/konstruksi.jpg", "/images/konstruksi2.jpg", "/images/konstruksi3.jpg"];
 

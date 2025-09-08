@@ -1,4 +1,4 @@
-import GaleriText from "@/components/organisms/gallery/galleryText";
+import GaleriText from "@/components/organisms/Gallery/GalleryText";
 
 const GaleriSectionOrganism = () => (
   <section className="relative w-full bg-gradient-to-br from-[#161D6F] via-[#1E2875] to-[#252F7D] overflow-hidden">

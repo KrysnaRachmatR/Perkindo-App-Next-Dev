@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
-import { useSignAuthController } from "./controller";
+import { useSignAuthController } from "./LoginController";
 
 const SignUpLoginView = () => {
   const ctrl = useSignAuthController();

@@ -37,7 +37,7 @@ const menuGroups = [
       {
         icon: <CheckCircle className="w-5 h-5" />,
         label: "Validasi KTA",
-        route: "/admin/anggota/validasi-reg/reg-kta",
+        route: "/admin/validasi-reg-kta",
       },
       {
         icon: <FileCheck className="w-5 h-5" />,
@@ -45,7 +45,7 @@ const menuGroups = [
         children: [
           {
             label: "Konstruksi",
-            route: "/admin/anggota/validasi-reg/reg-sbu-konstruksi",
+            route: "/admin/validasi-reg-konstruksi",
           },
           {
             label: "Non Konstruksi",
@@ -83,14 +83,9 @@ const menuGroups = [
     name: "KONTEN",
     menuItems: [
       {
-        icon: <Home className="w-5 h-5" />,
-        label: "Beranda",
-        route: "/admin/content/beranda",
-      },
-      {
         icon: <CalendarDays className="w-5 h-5" />,
         label: "Agenda",
-        route: "/admin/content/agenda",
+        route: "/admin/agenda",
       },
       {
         icon: <ImageIcon className="w-5 h-5" />,
@@ -100,17 +95,12 @@ const menuGroups = [
       {
         icon: <IdCard className="w-5 h-5" />,
         label: "Profil",
-        route: "/admin/content/profil",
+        route: "/admin/profil",
       },
       {
         icon: <Newspaper className="w-5 h-5" />,
         label: "Berita",
-        route: "/admin/content/berita",
-      },
-      {
-        icon: <Headset className="w-5 h-5" />,
-        label: "Layanan",
-        route: "/admin/content/layanan",
+        route: "/admin/berita",
       },
       {
         icon: <Hammer className="w-5 h-5" />,

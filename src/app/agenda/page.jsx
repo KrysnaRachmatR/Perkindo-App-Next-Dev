@@ -3,8 +3,8 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import NavbarView from "@/components/organisms/navbar/navbar";
-import Footer from "@/components/organisms/footer/footer";
+import NavbarView from "@/components/organisms/Navbar/Navbar";
+import Footer from "@/components/organisms/Footer/Footer";
 import { BASE_URL } from "@/utils/constant";
 
 // Mock data - replace with your actual data fetching

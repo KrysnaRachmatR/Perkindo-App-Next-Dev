@@ -1,9 +1,7 @@
 // src/handlers/useDashboardHandler.js
 import { useState, useEffect } from "react";
-// import { getDashboardSummary } from "@/services/dashboardService";
-import { getDashboardSummary } from "./dashboardService";
-// import { transformDashboardData } from "@/controllers/dashboardController";
-import { transformDashboardData } from "./dashboardController";
+import { getDashboardSummary } from "./DashboardService";
+import { transformDashboardData } from "./DashboardController";
 
 export const useDashboardHandler = () => {
   const [loading, setLoading] = useState(false);

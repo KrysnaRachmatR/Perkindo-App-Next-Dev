@@ -2,8 +2,8 @@
 
 import React, { useState, useEffect } from 'react';
 import { ArrowRight, Mail, Phone, MapPin, User, ChevronDown, ChevronUp, Star, Award, Target, Eye, Zap, Shield, Sparkles } from 'lucide-react';
-import NavbarView from '@/components/organisms/navbar/navbar';
-import Footer from '@/components/organisms/footer/footer';
+import NavbarView from '@/components/organisms/Navbar/Navbar';
+import Footer from '@/components/organisms/Footer/Footer';
 
 // Komponen Umum dengan animasi modern
 const SectionTitle = ({ children, className = "", subtitle = "" }) => (

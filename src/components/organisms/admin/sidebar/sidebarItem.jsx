@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { ChevronDown, ChevronRight } from "lucide-react";
+import { ChevronDown } from "lucide-react";
 
 const SidebarItem = ({ item, pageName, setPageName, currentPath }) => {
   const pathname = usePathname();
@@ -9,33 +9,32 @@ const SidebarItem = ({ item, pageName, setPageName, currentPath }) => {
 
   const handleClick = () => {
     if (item.children) {
-      setIsExpanded(!isExpanded);
+      setIsExpanded((prev) => !prev);
+    } else {
+      setPageName(item.label.toLowerCase());
     }
-    const updatedPageName =
-      pageName !== item.label.toLowerCase() ? item.label.toLowerCase() : "";
-    setPageName(updatedPageName);
   };
 
-  const isActive = (item) => {
-    if (item.route === pathname) return true;
-    if (item.children) {
-      return item.children.some((child) => pathname === child.route);
+  const isActive = (menu) => {
+    if (menu.route === pathname) return true;
+    if (menu.children) {
+      return menu.children.some((child) => pathname === child.route);
     }
     return false;
   };
 
   const isItemActive = isActive(item);
 
-  // Auto-expand if any child is active
+  // Auto expand jika salah satu child aktif
   useEffect(() => {
-    if (item.children && item.children.some(child => pathname === child.route)) {
+    if (item.children && item.children.some((child) => pathname === child.route)) {
       setIsExpanded(true);
     }
   }, [pathname, item.children]);
 
   return (
     <li>
-      {/* Jika ada children: tampilkan parent dengan dropdown */}
+      {/* Parent dengan dropdown */}
       {item.children ? (
         <div className="space-y-1">
           <button
@@ -47,26 +46,34 @@ const SidebarItem = ({ item, pageName, setPageName, currentPath }) => {
             }`}
           >
             <div className="flex items-center gap-3">
-              <div className={`flex items-center justify-center w-8 h-8 rounded-lg transition-colors ${
-                isItemActive 
-                  ? "bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400" 
-                  : "bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-400 group-hover:bg-slate-200 dark:group-hover:bg-slate-600"
-              }`}>
+              <div
+                className={`flex items-center justify-center w-8 h-8 rounded-lg transition-colors ${
+                  isItemActive
+                    ? "bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400"
+                    : "bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-400 group-hover:bg-slate-200 dark:group-hover:bg-slate-600"
+                }`}
+              >
                 {item.icon}
               </div>
               <span className="font-medium">{item.label}</span>
             </div>
-            <div className={`transform transition-transform duration-200 ${
-              isExpanded ? "rotate-0" : "-rotate-90"
-            } ${isItemActive ? "text-blue-600 dark:text-blue-400" : "text-slate-400"}`}>
-              <ChevronDown className="w-4 h-4" />
-            </div>
+            <ChevronDown
+              className={`w-4 h-4 transform transition-transform duration-200 ${
+                isExpanded ? "rotate-180" : "rotate-0"
+              } ${
+                isItemActive
+                  ? "text-blue-600 dark:text-blue-400"
+                  : "text-slate-400"
+              }`}
+            />
           </button>
-          
-          {/* Dropdown Menu */}
-          <div className={`overflow-hidden transition-all duration-300 ease-out ${
-            isExpanded ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
-          }`}>
+
+          {/* Dropdown children */}
+          <div
+            className={`overflow-hidden transition-all duration-300 ease-in-out ${
+              isExpanded ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
+            }`}
+          >
             <ul className="ml-6 space-y-1 border-l-2 border-slate-200 dark:border-slate-700 pl-4 py-2">
               {item.children.map((child, idx) => {
                 const isChildActive = pathname === child.route;
@@ -81,11 +88,13 @@ const SidebarItem = ({ item, pageName, setPageName, currentPath }) => {
                           : "text-slate-600 dark:text-slate-400 hover:bg-slate-100/80 dark:hover:bg-slate-700/50 hover:text-slate-900 dark:hover:text-slate-100"
                       }`}
                     >
-                      <div className={`w-2 h-2 rounded-full transition-colors ${
-                        isChildActive 
-                          ? "bg-indigo-500 dark:bg-indigo-400" 
-                          : "bg-slate-300 dark:bg-slate-600 group-hover:bg-slate-400 dark:group-hover:bg-slate-500"
-                      }`}></div>
+                      <div
+                        className={`w-2 h-2 rounded-full transition-colors ${
+                          isChildActive
+                            ? "bg-indigo-500 dark:bg-indigo-400"
+                            : "bg-slate-300 dark:bg-slate-600 group-hover:bg-slate-400 dark:group-hover:bg-slate-500"
+                        }`}
+                      ></div>
                       <span>{child.label}</span>
                     </Link>
                   </li>
@@ -95,7 +104,7 @@ const SidebarItem = ({ item, pageName, setPageName, currentPath }) => {
           </div>
         </div>
       ) : (
-        // Jika tidak ada children: tampilkan sebagai menu biasa
+        // Menu tanpa children
         <Link
           href={item.route}
           onClick={handleClick}
@@ -105,16 +114,18 @@ const SidebarItem = ({ item, pageName, setPageName, currentPath }) => {
               : "text-slate-700 dark:text-slate-300 hover:bg-slate-100/80 dark:hover:bg-slate-700/50 hover:text-slate-900 dark:hover:text-slate-100"
           }`}
         >
-          <div className={`flex items-center justify-center w-8 h-8 rounded-lg transition-colors ${
-            isItemActive 
-              ? "bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400" 
-              : "bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-400 group-hover:bg-slate-200 dark:group-hover:bg-slate-600"
-          }`}>
+          <div
+            className={`flex items-center justify-center w-8 h-8 rounded-lg transition-colors ${
+              isItemActive
+                ? "bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400"
+                : "bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-400 group-hover:bg-slate-200 dark:group-hover:bg-slate-600"
+            }`}
+          >
             {item.icon}
           </div>
           <span>{item.label}</span>
-          
-          {/* Active indicator */}
+
+          {/* indicator bulat aktif */}
           {isItemActive && (
             <div className="absolute right-3 w-2 h-2 bg-blue-500 dark:bg-blue-400 rounded-full animate-pulse"></div>
           )}

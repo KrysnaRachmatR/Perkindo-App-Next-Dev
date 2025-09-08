@@ -1,4 +1,4 @@
-import { useRapatHandler } from "./rapatHandler";
+import { useRapatHandler } from "./RapatHandler";
 import Swal from "sweetalert2";
 
 const RapatTab0 = () => {

@@ -1,15 +1,15 @@
 "use client";
 
 import { useState } from "react";
-import NavbarView from "@/components/organisms/navbar/navbar";
-import Footer from "@/components/organisms/footer/footer";
-import HeroNews from "@/components/organisms/news/HeroNews";
-import FeaturedNews from "@/components/organisms/news/FeaturedNews";
-import NewsFilter from "@/components/organisms/news/NewsFilter";
-import NewsGrid from "@/components/organisms/news/NewsGrid";
-import Pagination from "@/components/organisms/news/Pagination";
+import NavbarView from "@/components/organisms/Navbar/Navbar";
+import Footer from "@/components/organisms/Footer/Footer";
+import HeroNews from "@/components/organisms/News/HeroNews";
+import FeaturedNews from "@/components/organisms/News/FeaturedNews";
+import NewsFilter from "@/components/organisms/News/NewsFilter";
+import NewsGrid from "@/components/organisms/News/NewsGrid";
+import Pagination from "@/components/organisms/News/Pagination";
 // import NewsletterBox from "@/components/organisms/news/NewsletterBox";
-import NewsModal from "@/components/organisms/news/NewsModal";
+import NewsModal from "@/components/organisms/News/NewsModal";
 
 import { useNewsPageHandler } from "./handler";
 

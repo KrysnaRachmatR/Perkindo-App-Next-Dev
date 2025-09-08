@@ -1,4 +1,4 @@
-import { loginUser, registerUser } from "./service";
+import { loginUser, registerUser } from "./LoginService";
 
 export const handleLogin = async ({
   signInUsername,

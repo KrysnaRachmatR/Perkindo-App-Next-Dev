@@ -2,10 +2,10 @@ import { useState, useEffect } from "react";
 import Swal from "sweetalert2";
 import {
   fetchCreateNotulensi
-} from "./rapatController";
+} from "./RapatController";
 import { 
     postNotulen 
-} from "./rapatService";
+} from "./RapatService";
 
 export const useNotulenHandler = () => {
   const [isi, setIsi] = useState("");

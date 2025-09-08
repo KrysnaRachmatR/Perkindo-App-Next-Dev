@@ -1,7 +1,7 @@
 
 
-import { useNotulenHandler } from "./notulenHandler";
-import { useRapatHandler } from "./rapatHandler";
+import { useNotulenHandler } from "./NotulenHandler";
+import { useRapatHandler } from "./RapatHandler";
 import { useEffect, useState } from "react";
 import { useEditor, EditorContent } from "@tiptap/react";
 import Swal from "sweetalert2";

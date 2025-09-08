@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import { useRapatHandler } from "./rapatHandler";
-import NotulensiView from "./notulenRapat";
-import RapatTab0 from "./rapatTab0"
-import RapatTab1 from "./rapatTab1";
-import RapatTab3 from "./rapatTab3";
+import { useRapatHandler } from "./RapatHandler";
+import NotulensiView from "./NotulenRapat";
+import RapatTab0 from "./RapatTab0"
+import RapatTab1 from "./RapatTab1";
+import RapatTab3 from "./RapatTab3";
 
 const UndanganMasukView = () => {
   const [activeTab, setActiveTab] = useState(0);

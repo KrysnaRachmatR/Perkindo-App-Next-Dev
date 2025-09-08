@@ -9,7 +9,7 @@ import { getRapat,
   getAllNotulensi,
   postTtdAbsen,
   getUserRapatDone,
-  downloadNotulensiZip } from "./rapatService";
+  downloadNotulensiZip } from "./RapatService";
 
 import Swal from "sweetalert2";
 

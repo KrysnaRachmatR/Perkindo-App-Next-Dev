@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect, useRef } from "react";
-import { useNavbarController } from "./handler";
+import { useNavbarController } from "./NavbarHandler";
 
 // Custom Icons
 const ChevronDownIcon = ({ className = "w-4 h-4" }) => (
